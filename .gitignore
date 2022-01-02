@@ -1,3 +1,4 @@
 config.py
 .pytest_cache
 work/
+__pycahe__
