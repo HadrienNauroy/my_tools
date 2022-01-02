@@ -5,6 +5,7 @@ pyproject.toml
 setup.cfg
 setup.py
 src/cryptools/__init__.py
+src/cryptools/mock.py
 src/cryptools/visualisation.py
 src/crytptools.egg-info/PKG-INFO
 src/crytptools.egg-info/SOURCES.txt
