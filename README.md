@@ -14,4 +14,5 @@ This project will contain :
 
 ## Installation
 
-`` python3 setup.py install --user ``
+    pip install pyreadline
+    python3 setup.py install --user 
