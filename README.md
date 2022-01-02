@@ -8,7 +8,7 @@ This project will contain :
 - Ananlyse tools
 - Binance API mocks
 
-## Dependecies 
+## Dependencies 
 
 - [mplfinance](https://github.com/matplotlib/mplfinance)
 - [pandas](https://pandas.pydata.org/)
