@@ -1,6 +1,5 @@
 """A script used to create mocks of binance API"""
 
-from copy import Error
 from typing import Iterator
 import cryptools.visualisation as vs
 
@@ -87,7 +86,6 @@ if __name__ == "__main__":
 
     # usage exemple
     import json
-    import cryptools.visualisation as vs
 
     with open(".\data\\btc_data.json") as file:
         data = json.load(file)
