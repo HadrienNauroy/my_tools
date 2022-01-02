@@ -7,6 +7,11 @@ This project will contain :
 - Visualisation tools
 - Ananlyse tools
 
+## Dependecies 
+
+- [mplfinance](https://github.com/matplotlib/mplfinance)
+- [pandas](https://pandas.pydata.org/)
+
 ## Installation
 
 `` python3 setup.py install --user ``
