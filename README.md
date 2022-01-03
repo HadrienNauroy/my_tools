@@ -1,5 +1,5 @@
-# Cryptools
- Librarie of usefull tools for crypto 
+# my tools
+ Librarie of usefull tools 
 
 
 ## Description
@@ -7,6 +7,7 @@ This project will contain :
 - Visualisation tools
 - Ananlyse tools
 - Binance API mocks
+- Monitoring tools
 
 ## Dependencies 
 
