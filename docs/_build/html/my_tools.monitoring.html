@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>my_tools.monitoring package &#8212; my_tools 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="my_tools.cryptools package" href="my_tools.cryptools.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="my-tools-monitoring-package">
+<h1>my_tools.monitoring package<a class="headerlink" href="#my-tools-monitoring-package" title="Permalink to this headline">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-my_tools.monitoring.bot">
+<span id="my-tools-monitoring-bot-module"></span><h2>my_tools.monitoring.bot module<a class="headerlink" href="#module-my_tools.monitoring.bot" title="Permalink to this headline">¶</a></h2>
+<p>This script is aimed too define all useful function for monitoring another bot with messenger</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="my_tools.monitoring.bot.MessageError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">my_tools.monitoring.bot.</span></span><span class="sig-name descname"><span class="pre">MessageError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">world</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#my_tools.monitoring.bot.MessageError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="my_tools.monitoring.bot.Monitor_Bot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">my_tools.monitoring.bot.</span></span><span class="sig-name descname"><span class="pre">Monitor_Bot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#my_tools.monitoring.bot.Monitor_Bot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A type of bot that is able to send messages and retreive instruction from user</p>
+<dl>
+<dt>Inputs :</dt><dd><ul class="simple">
+<li><p>config : a monitor_config object with messenger password and username</p></li>
+</ul>
+</dd>
+<dt>Accepted command :</dt><dd><ul class="simple">
+<li><p>START : start the other bot for undefined time</p></li>
+<li><p>START for &lt;duration&gt; : start the other bot for &lt;duration&gt;</p></li>
+<li><p>STOP : stop the other bot for undefined time</p></li>
+<li><p>STOP for &lt;duration&gt; : stop the other bot for &lt;duration&gt;</p></li>
+</ul>
+<p>Note that “Stop” or “stop” will also work</p>
+</dd>
+<dt>Accepted duration :</dt><dd><ul class="simple">
+<li><p>“x s” /  “x sec” / “x second” / “x seconds” / “x secs”</p></li>
+<li><p>“x m” / “x min” / “x mins” / “x minute” / “x minutes”</p></li>
+<li><p>“x h” / “x hour” / “x hours</p></li>
+<li><p>“x d” / “x day” / “x day”</p></li>
+</ul>
+<p>Note that a space is required between x and the time frame</p>
+</dd>
+<dt>Usage exemple:</dt><dd><ul class="simple">
+<li><p>in messenger : “STOP for 1 hour”</p></li>
+<li><p>in messenger : “START</p></li>
+</ul>
+</dd>
+</dl>
+<p>Any other command will Raise an Error wich will be sended to user on messenger</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="my_tools.monitoring.bot.Monitor_Bot.monitor">
+<span class="sig-name descname"><span class="pre">monitor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#my_tools.monitoring.bot.Monitor_Bot.monitor" title="Permalink to this definition">¶</a></dt>
+<dd><p>The main function that returns True if the bot we are monitoring should trade
+and False otherwise.</p>
+<p>This is the function one should call in an other script to monitor something.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="my_tools.monitoring.bot.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">my_tools.monitoring.bot.</span></span><span class="sig-name descname"><span class="pre">State</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#my_tools.monitoring.bot.State" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dl class="simple">
+<dt>The diffrent possible state of Monitor_Bot:</dt><dd><ul class="simple">
+<li><p>trading</p></li>
+<li><p>stand_by</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="my_tools.monitoring.bot.State.stand_by">
+<span class="sig-name descname"><span class="pre">stand_by</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#my_tools.monitoring.bot.State.stand_by" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="my_tools.monitoring.bot.State.trading">
+<span class="sig-name descname"><span class="pre">trading</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#my_tools.monitoring.bot.State.trading" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-my_tools.monitoring.message">
+<span id="my-tools-monitoring-message-module"></span><h2>my_tools.monitoring.message module<a class="headerlink" href="#module-my_tools.monitoring.message" title="Permalink to this headline">¶</a></h2>
+<p>A script aimed to send and retreive messages via messenger</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="my_tools.monitoring.message.connect">
+<span class="sig-prename descclassname"><span class="pre">my_tools.monitoring.message.</span></span><span class="sig-name descname"><span class="pre">connect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#my_tools.monitoring.message.connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up of the bot</p>
+<p>This function launch a selenium driver and connect to messenger</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="my_tools.monitoring.message.monitoring_config">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">my_tools.monitoring.message.</span></span><span class="sig-name descname"><span class="pre">monitoring_config</span></span><a class="headerlink" href="#my_tools.monitoring.message.monitoring_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class with username and password for messenger.</p>
+<dl class="simple">
+<dt>It includes :</dt><dd><ul class="simple">
+<li><p>USR : messenger username</p></li>
+<li><p>PWD : messenger password</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="my_tools.monitoring.message.retreive_messages">
+<span class="sig-prename descclassname"><span class="pre">my_tools.monitoring.message.</span></span><span class="sig-name descname"><span class="pre">retreive_messages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#my_tools.monitoring.message.retreive_messages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retreive the last message send by user</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="my_tools.monitoring.message.send_message">
+<span class="sig-prename descclassname"><span class="pre">my_tools.monitoring.message.</span></span><span class="sig-name descname"><span class="pre">send_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">browser</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#my_tools.monitoring.message.send_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Send the message in “message” string</p>
+</dd></dl>
+
+</section>
+<section id="module-my_tools.monitoring">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-my_tools.monitoring" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">my_tools</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">my_tools</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="my_tools.html">my_tools package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">my_tools</a><ul>
+  <li><a href="my_tools.html">my_tools package</a><ul>
+      <li>Previous: <a href="my_tools.cryptools.html" title="previous chapter">my_tools.cryptools package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Hadrien Nauroy.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.3.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/my_tools.monitoring.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -13,12 +13,12 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath("../src"))
+sys.path.insert(0, os.path.abspath("../src/my_tools"))
 
 
 # -- Project information -----------------------------------------------------
 
-project = "cryptools"
+project = "my_tools"
 copyright = "2022, Hadrien Nauroy"
 author = "Hadrien Nauroy"
 
