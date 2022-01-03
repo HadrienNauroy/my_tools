@@ -2,3 +2,4 @@ config.py
 .pytest_cache
 work/
 __pycahe__
+tickers.json

@@ -15,7 +15,7 @@
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="cryptools" href="modules.html" />
+    <link rel="prev" title="monitoring package" href="monitoring.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -40,26 +40,83 @@
 <section id="module-cryptools.mock">
 <span id="cryptools-mock-module"></span><h2>cryptools.mock module<a class="headerlink" href="#module-cryptools.mock" title="Permalink to this headline">¶</a></h2>
 <p>A script used to create mocks of binance API</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="cryptools.mock.SizeError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cryptools.mock.</span></span><span class="sig-name descname"><span class="pre">SizeError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cryptools.mock.SizeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="cryptools.mock.kline_mock">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cryptools.mock.</span></span><span class="sig-name descname"><span class="pre">kline_mock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cryptools.mock.kline_mock" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></p>
-<p>This class is aimed to mock the get_ticker function of binance API from a kline call</p>
+<p>This class is aimed to retreive candle of binance API from a kline call one by one</p>
 <dl class="simple">
 <dt>input :</dt><dd><ul class="simple">
 <li><p>data : raw data from client.get_historical_klines</p></li>
 </ul>
 </dd>
 <dt>object :</dt><dd><ul class="simple">
-<li><p>iterator that returns the equivalent of get_ticker() in OHLC format</p></li>
+<li><p>iterator that returns a candle in OHLC format</p></li>
 </ul>
 </dd>
 </dl>
 <p>usage :</p>
 <blockquote>
 <div><p>To retreive open prices :</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">kline_mock</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">tick</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;Open&quot;</span><span class="p">])</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">kline</span> <span class="ow">in</span> <span class="n">kline_mock</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">kline</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cryptools.mock.klines_mock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cryptools.mock.</span></span><span class="sig-name descname"><span class="pre">klines_mock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cryptools.mock.klines_mock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></p>
+<p>This class is aimed to retreive candles of diffrent binance API from a kline calls one by one</p>
+<dl class="simple">
+<dt>input :</dt><dd><ul class="simple">
+<li><p>**kwargs : raw data from client.get_historical_klines</p></li>
+</ul>
+</dd>
+<dt>object :</dt><dd><ul class="simple">
+<li><p>iterator that returns all candles in OHLC format in a dict</p></li>
+</ul>
+</dd>
+</dl>
+<p>usage :</p>
+<blockquote>
+<div><p>To retreive all open prices :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">klines</span> <span class="ow">in</span> <span class="n">klines_mock</span><span class="p">(</span><span class="n">btc</span><span class="o">=</span><span class="n">data_btc</span><span class="p">,</span> <span class="n">eth</span><span class="o">=</span><span class="n">data_btc</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">klines</span><span class="p">[</span><span class="s2">&quot;btc&quot;</span><span class="p">][</span><span class="s2">&quot;Open&quot;</span><span class="p">],</span> <span class="n">klines</span><span class="p">[</span><span class="s2">&quot;eth&quot;</span><span class="p">][</span><span class="s2">&quot;Open&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="cryptools.mock.tickers_mock">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cryptools.mock.</span></span><span class="sig-name descname"><span class="pre">tickers_mock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cryptools.mock.tickers_mock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></p>
+<p>This class is aimed to mock the get_all_tickers() functin of binance
+given a set data from previous call. It arrange data in a dict</p>
+<dl class="simple">
+<dt>input :</dt><dd><ul class="simple">
+<li><p>data : list data from succesive call of client.get_all_tickers()</p></li>
+</ul>
+</dd>
+<dt>object :</dt><dd><ul class="simple">
+<li><p>iterator that returns all all tickers in a dict one by one</p></li>
+</ul>
+</dd>
+</dl>
+<p>usage :</p>
+<blockquote>
+<div><p>To retreive BTCUSDT price :</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">tick</span> <span class="ow">in</span> <span class="n">tickers_mock</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+<span class="gp">&gt;&gt;&gt; </span>    <span class="nb">print</span><span class="p">(</span><span class="n">tick</span><span class="p">[</span><span class="s2">&quot;BTCUSDT&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div></blockquote>
@@ -89,10 +146,12 @@
 <dd><p>this function handle the re-organisation of data in a dataframe</p>
 <dl class="simple">
 <dt>parameters :</dt><dd><ul class="simple">
-<li><p>data : raw data from “client.get_historical_klines(<a href="#id1"><span class="problematic" id="id2">*</span></a>args), type list</p></li>
+<li><p>data : raw data from “client.get_historical_klines(*args), type list</p></li>
 </ul>
 </dd>
-<dt>outputs :</dt><dd><p>-a panda DataFrame with Open, High, Low and Close columns with a DateTimeIndex</p>
+<dt>outputs :</dt><dd><ul class="simple">
+<li><p>data_frame : a panda DataFrame with Open, High, Low and Close columns with a DateTimeIndex</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -122,8 +181,15 @@
 <h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">cryptools</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">cryptools package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="monitoring.html">monitoring package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cryptools package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cryptools.mock">cryptools.mock module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cryptools.visualisation">cryptools.visualisation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-cryptools">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -132,8 +198,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-  <li><a href="modules.html">cryptools</a><ul>
-      <li>Previous: <a href="modules.html" title="previous chapter">cryptools</a></li>
+  <li><a href="modules.html">src</a><ul>
+      <li>Previous: <a href="monitoring.html" title="previous chapter">monitoring package</a></li>
   </ul></li>
   </ul></li>
 </ul>

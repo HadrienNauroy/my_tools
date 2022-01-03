@@ -23,8 +23,8 @@ class kline_mock(Iterator):
 
         To retreive open prices :
 
-        >>> for tick in kline_mock(data):
-        >>>     print(tick["Open"])
+        >>> for kline in kline_mock(data):
+        >>>     print(kline["Open"])
 
     """
 
@@ -40,11 +40,11 @@ class kline_mock(Iterator):
 
 
 class klines_mock(Iterator):
-    """
+    r"""
     This class is aimed to retreive candles of diffrent binance API from a kline calls one by one
 
     input :
-        - data : raw data from client.get_historical_klines
+        - \*\*kwargs : raw data from client.get_historical_klines
 
     object :
         - iterator that returns all candles in OHLC format in a dict
@@ -53,8 +53,8 @@ class klines_mock(Iterator):
 
         To retreive all open prices :
 
-        >>> for tick in klines_mock(btc=data_btc, eth=data_btc):
-        >>>     print(tick["btc"]["Open"], tick["eth"]["Open"])
+        >>> for klines in klines_mock(btc=data_btc, eth=data_btc):
+        >>>     print(klines["btc"]["Open"], klines["eth"]["Open"])
 
 
     """
@@ -82,13 +82,56 @@ class klines_mock(Iterator):
         return {key: self.iters[key].__next__()[1] for key in self.kwargs.keys()}
 
 
+class tickers_mock(Iterator):
+    r"""
+    This class is aimed to mock the get_all_tickers() functin of binance
+    given a set data from previous call. It arrange data in a dict
+
+    input :
+        - data : list data from succesive call of client.get_all_tickers()
+
+    object :
+        - iterator that returns all all tickers in a dict one by one
+
+    usage :
+
+        To retreive BTCUSDT price :
+
+        >>> for tick in tickers_mock(data):
+        >>>     print(tick["BTCUSDT"])
+
+    """
+
+    def __init__(self, data):
+        self.data = data
+        self.id = -1
+        self.len = len(data)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+
+        if self.id < self.len - 1:
+            self.id += 1
+            tickers = self.data[self.id]
+            tickers_dict = {
+                tickers[k]["symbol"]: float(tickers[k]["price"])
+                for k in range(len(tickers))
+            }
+            return tickers_dict
+
+        else:
+            raise StopIteration
+
+
 if __name__ == "__main__":
 
     # usage exemple
     import json
 
-    with open(".\data\\btc_data.json") as file:
+    with open(".\data\\tickers.json") as file:
         data = json.load(file)
 
-    for tick in klines_mock(btc=data, eth=data):
-        print(tick["btc"]["Open"], tick["eth"]["Open"])
+    for tick in tickers_mock(data):
+        print(tick["BTCUSDT"])

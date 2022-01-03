@@ -8,13 +8,15 @@ import pandas as pd
 
 
 def organnise_data(data):
-    """this function handle the re-organisation of data in a dataframe
+    r"""this function handle the re-organisation of data in a dataframe
 
     parameters :
-        - data : raw data from "client.get_historical_klines(*args), type list
+        - data : raw data from "client.get_historical_klines(\*args), type list
 
     outputs :
-        -a panda DataFrame with Open, High, Low and Close columns with a DateTimeIndex
+        - data_frame : a panda DataFrame with Open, High, Low and Close columns with a DateTimeIndex
+
+
     """
 
     # tighting up data in a panda frame
