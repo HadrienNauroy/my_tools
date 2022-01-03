@@ -7,6 +7,7 @@ This project will contain :
 - Visualisation tools
 - Ananlyse tools
 - Binance API mocks
+- Monitoring tools
 
 ## Dependencies 
 
