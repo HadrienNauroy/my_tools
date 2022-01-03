@@ -9,6 +9,7 @@ This project will contain :
 - Binance API mocks
 - Monitoring tools
 
+Detailed documentation can be found in ```docs/build/html``` or [here](https://github.com/HadrienNauroy/my_tools/blob/main/mytools_doc.pdf)
 ## Dependencies 
 
 - [mplfinance](https://github.com/matplotlib/mplfinance)
