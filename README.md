@@ -1,5 +1,5 @@
 # my tools
- Librarie of usefull tools 
+ Librarie of usefull tools i use when coding some bots
 
 
 ## Description
@@ -13,6 +13,7 @@ This project will contain :
 
 - [mplfinance](https://github.com/matplotlib/mplfinance)
 - [pandas](https://pandas.pydata.org/)
+- [selenium](https://selenium-python.readthedocs.io/)
 
 ## Installation
 
